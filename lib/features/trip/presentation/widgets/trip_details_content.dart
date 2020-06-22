@@ -193,7 +193,7 @@ class TripDetailsContent extends StatelessWidget {
 
   Future<String> getDateFormatted() async {
     await initializeDateFormatting('ar_SA', null);
-    return intl.DateFormat('E, MM MMM, hh:mm a', 'ar_SA')
+    return intl.DateFormat('E, dd MMM, hh:mm a', 'ar_SA')
         .format(state.trip.date);
   }
 }
