@@ -39,14 +39,15 @@ class TripDetailsContent extends StatelessWidget {
                 if (!snapshot.hasData) return Container();
 
                 return _buildInfoRow(
-                  Icons.calendar_today,
+                  'assets/images/calendar.png',
                   '${snapshot.data}',
                 );
               },
             ),
           ),
           _buildSymmetricPadding(
-            child: _buildInfoRow(Icons.attach_file, state.trip.address),
+            child:
+                _buildInfoRow('assets/images/pushpin.png', state.trip.address),
           ),
           _buildCustomDivider(),
           _buildTrainerPart(),
@@ -170,7 +171,7 @@ class TripDetailsContent extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoRow(IconData icon, String text) {
+  Widget _buildInfoRow(String imagePath, String text) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -181,9 +182,10 @@ class TripDetailsContent extends StatelessWidget {
         SizedBox(
           width: 10.0,
         ),
-        Icon(
-          icon,
-          color: Colors.grey[600],
+        Image.asset(
+          imagePath,
+          height: 25,
+          color: Colors.black54,
         ),
       ],
     );
