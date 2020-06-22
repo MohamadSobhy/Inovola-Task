@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:intl/intl.dart';
+import 'package:intl/intl.dart' as intl;
 
 import '../bloc/trip_bloc.dart';
 import 'trip_images_banner.dart';
@@ -64,6 +64,7 @@ class TripDetailsContent extends StatelessWidget {
             child: Text(
               state.trip.occasionDetail,
               textAlign: TextAlign.right,
+              textDirection: TextDirection.rtl,
             ),
           ),
           _buildCustomDivider(),
@@ -149,6 +150,10 @@ class TripDetailsContent extends StatelessWidget {
             children: [
               Text(state.trip.trainerName),
               CircleAvatar(
+                //! this will display a purple circle because there is a problem
+                //! with the link of the image. i tried to open it from browser but
+                //! i figured the link leads to unsecure connection issue. i tried
+                //! a random imageg link from google and it works so it is not an app issue.
                 backgroundImage: NetworkImage(state.trip.trainerImg),
               )
             ],
@@ -186,6 +191,7 @@ class TripDetailsContent extends StatelessWidget {
 
   Future<String> getDateFormatted() async {
     await initializeDateFormatting('ar_SA', null);
-    return DateFormat('E, MM MMM, hh:mm a', 'ar_SA').format(state.trip.date);
+    return intl.DateFormat('E, MM MMM, hh:mm a', 'ar_SA')
+        .format(state.trip.date);
   }
 }
