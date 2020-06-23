@@ -33,8 +33,13 @@ class TripDetailsScreen extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.error_outline, size: 30),
-          Text(state.message),
+          Icon(Icons.error_outline, size: 30, color: Colors.grey[600]),
+          Text(
+            state.message,
+            style: TextStyle(
+              color: Colors.black,
+            ),
+          ),
           SizedBox(height: 5),
           OutlineButton(
             onPressed: () {
