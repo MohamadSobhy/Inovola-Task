@@ -15,7 +15,7 @@ class TripDetailsScreen extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           } else if (state is ErrorState) {
-            return _buildErrorColumn(state);
+            return _buildErrorColumn(state, ctx);
           } else if (state is TripDataFetchedState) {
             return TripDetailsContent(
               state: state,
@@ -28,12 +28,25 @@ class TripDetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildErrorColumn(ErrorState state) {
+  Widget _buildErrorColumn(ErrorState state, context) {
     return Center(
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.error_outline, size: 20),
+          Icon(Icons.error_outline, size: 30),
           Text(state.message),
+          SizedBox(height: 5),
+          OutlineButton(
+            onPressed: () {
+              BlocProvider.of<TripBloc>(context).add(GetTripDataEvent());
+            },
+            child: Text(
+              'Retry',
+              style: TextStyle(
+                color: Theme.of(context).primaryColor,
+              ),
+            ),
+          ),
         ],
       ),
     );
